@@ -21,7 +21,7 @@ return -1;
 }
 serverAddress.sin_family = AF_INET;
 serverAddress.sin_port = htons(8080);
-serverAddress.sin_addr.s_addr = inet_addr("192.16.8.1.21");
+serverAddress.sin_addr.s_addr = inet_addr("192.168.1.27");
 if (connect(clientSocket, (struct sockaddr*)&serverAddress, sizeof(serverAddress)) < 0) {
 std::cerr << "Erro na conexão com o servidor" << std::endl;
 closesocket(clientSocket);
