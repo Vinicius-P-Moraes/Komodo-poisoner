@@ -1,3 +1,4 @@
+//10.66.186.110 
 #include <iostream>
 #include <string>
 
@@ -30,9 +31,9 @@ char buffer[1024] = {0};
 const char* hello = "Hello from server";
 
 //Variaveis utilizadas no builder:
-std::string build_content_1 = "";
-std::string build_content_2 = "";
-std::string build_content_3 = "";
+std::string build_content_1 = "#include <winsock2.h>\n#include <windows.h>\n#include <iostream>\n#include <ws2tcpip.h>\n#include <cstring>\nint main() {\nWSADATA wsaData;\nSOCKET clientSocket = INVALID_SOCKET;\nstruct sockaddr_in serverAddress;\nconst char* hello = \"Hello from client\";\nchar buffer[1024] = {0};\nif (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {\nstd::cerr << \"Falha na inicialização do Winsock\" << std::endl;\nreturn -1;\n}\n/* Criando o socket*/\nif ((clientSocket = socket(AF_INET, SOCK_STREAM, 0)) == INVALID_SOCKET) {\nstd::cerr << \"Falha na criação do socket\" << std::endl;\nWSACleanup();\nreturn -1;\n}\nserverAddress.sin_family = AF_INET;\nserverAddress.sin_port = htons(";
+std::string build_content_2 = ");\nserverAddress.sin_addr.s_addr = inet_addr(\"";
+std::string build_content_3 = "\");\nif (connect(clientSocket, (struct sockaddr*)&serverAddress, sizeof(serverAddress)) < 0) {\nstd::cerr << \"Erro na conexão com o servidor\" << std::endl;\nclosesocket(clientSocket);\nWSACleanup();\nreturn -1;\n}\nif (send(clientSocket, hello, strlen(hello), 0) < 0) {\nstd::cerr << \"Erro no envio de dados ao servidor\" << std::endl;\nclosesocket(clientSocket);\nWSACleanup();\nreturn -1;\n}\nif (recv(clientSocket, buffer, sizeof(buffer), 0) < 0) {\nstd::cerr << \"Erro na recepção da resposta do servidor\" << std::endl;\nclosesocket(clientSocket);\nWSACleanup();\nreturn -1;\n}\nstd::cout << \"Resposta do servidor: \" << buffer << std::endl;\nclosesocket(clientSocket);\nWSACleanup();\nreturn 0;\n}";
 
 //Declaração das funçôes
 int port_extractor();
@@ -229,78 +230,75 @@ int builder()
         std::ofstream arquivocpp("build.cpp");
 
 
-        arquivocpp << "build_content_1;
+        arquivocpp << build_content_1;
         arquivocpp << port;
         arquivocpp << build_content_2;
         arquivocpp << ip;
         arquivocpp << build_content_3;
 
+	arquivocpp.close();
 
-//Codigo para ser compilado:
-/*
-#include <iostream>
-#include <winsock2.h>
-#include <ws2tcpip.h>
-#include <cstring>
+	std::ofstream call_compiler("call_compiller.sh");
+	call_compiler << "i686-w64-mingw32-g++ build.cpp -o build.exe -lws2_32";
+	call_compiler.close();	
+	system("chmod +x ./call_compiller.sh && ./call_compiller.sh");
+/*    
+#include <iostream>\n#include <winsock2.h>\n#include <ws2tcpip.h>\n#include <cstring>\nint main() {\nWSADATA wsaData;\nSOCKET clientSocket = INVALID_SOCKET;\nstruct sockaddr_in serverAddress;
+    \nconst char* hello = \"Hello from client\";
+    \nchar buffer[1024] = {0};
 
-int main() {
-    WSADATA wsaData;
-    SOCKET clientSocket = INVALID_SOCKET;
-    struct sockaddr_in serverAddress;
-    const char* hello = "Hello from client";
-    char buffer[1024] = {0};
+    \n// Inicializando o Winsock
+    \nif (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
+        \nstd::cerr << \"Falha na inicialização do Winsock\" << std::endl;
+        \nreturn -1;
+    \n}
 
-    // Inicializando o Winsock
-    if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
-        std::cerr << "Falha na inicialização do Winsock" << std::endl;
-        return -1;
-    }
+    \n// Criando o socket
+    \nif ((clientSocket = socket(AF_INET, SOCK_STREAM, 0)) == INVALID_SOCKET) {
+        \nstd::cerr << \"Falha na criação do socket\" << std::endl;
+        \nWSACleanup();
+        \nreturn -1;
+    \n}
 
-    // Criando o socket
-    if ((clientSocket = socket(AF_INET, SOCK_STREAM, 0)) == INVALID_SOCKET) {
-        std::cerr << "Falha na criação do socket" << std::endl;
-        WSACleanup();
-        return -1;
-    }
+    \n// Configurando o endereço do servidor
+    \nserverAddress.sin_family = AF_INET;
+    \nserverAddress.sin_port = htons(port);
+    \nserverAddress.sin_addr.s_addr = inet_addr(ip);
 
-    // Configurando o endereço do servidor
-    serverAddress.sin_family = AF_INET;
-    serverAddress.sin_port = htons(port);
-    serverAddress.sin_addr.s_addr = inet_addr(ip);
+    \n// Conectando ao servidor
+    \nif (connect(clientSocket, (struct sockaddr*)&serverAddress, sizeof(serverAddress)) < 0) {
+        \nstd::cerr << \"Erro na conexão com o servidor\" << std::endl;
+        \nclosesocket(clientSocket);
+        \nWSACleanup();
+        \nreturn -1;
+    \n}
 
-    // Conectando ao servidor
-    if (connect(clientSocket, (struct sockaddr*)&serverAddress, sizeof(serverAddress)) < 0) {
-        std::cerr << "Erro na conexão com o servidor" << std::endl;
-        closesocket(clientSocket);
-        WSACleanup();
-        return -1;
-    }
+    \n// Enviando dados ao servidor
+    \nif (send(clientSocket, hello, strlen(hello), 0) < 0) {
+        \nstd::cerr << \"Erro no envio de dados ao servidor\" << std::endl;
+        \nclosesocket(clientSocket);
+        \nWSACleanup();
+        \nreturn -1;
+    \n}
 
-    // Enviando dados ao servidor
-    if (send(clientSocket, hello, strlen(hello), 0) < 0) {
-        std::cerr << "Erro no envio de dados ao servidor" << std::endl;
-        closesocket(clientSocket);
-        WSACleanup();
-        return -1;
-    }
+    \n// Recebendo resposta do servidor
+    \nif (recv(clientSocket, buffer, sizeof(buffer), 0) < 0) {
+        \nstd::cerr << \"Erro na recepção da resposta do servidor\" << std::endl;
+        \nclosesocket(clientSocket);
+        \nWSACleanup();
+        \nreturn -1;
+    \n}
+    \nstd::cout << \"Resposta do servidor: \" << buffer << std::endl;
 
-    // Recebendo resposta do servidor
-    if (recv(clientSocket, buffer, sizeof(buffer), 0) < 0) {
-        std::cerr << "Erro na recepção da resposta do servidor" << std::endl;
-        closesocket(clientSocket);
-        WSACleanup();
-        return -1;
-    }
-    std::cout << "Resposta do servidor: " << buffer << std::endl;
+    \n// Fechando o socket
+    \nclosesocket(clientSocket);
 
-    // Fechando o socket
-    closesocket(clientSocket);
-
-    // Finalizando o Winsock
-    WSACleanup();
+    \n// Finalizando o Winsock
+    \nWSACleanup();
 
     return 0;
 }
+
 */
 return 0;
 }

@@ -6,6 +6,9 @@ Ela que cria um executável para windows e recebe a input do teclado do pc hospe
 
 Desenvolvido em C++, pode ser utilizado tanto em uma distribuição Linux Desktop quanto em um terminal mobile como o Termux que é seu objetivo principal.
 
+## Instruções:
+sudo apt-get install mingw-w64
+
 AINDA EM DESENVOLVIMENTO
 
 # Diário de bordo
