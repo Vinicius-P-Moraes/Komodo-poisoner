@@ -17,7 +17,11 @@ AINDA EM DESENVOLVIMENTO
 **O que foi feito:**
 
 •	Comecei a organizar melhor o conteúdo do executável para Windows.
+•	O compilador funciona e o software windows se conecta o server no linux.
 
+**Necessidade contemporânea:**
+
+• Fazer com que ao executar o programa no windwos ele não exima o cmd (acho que com o -mwindows no linker)
 
 
 
