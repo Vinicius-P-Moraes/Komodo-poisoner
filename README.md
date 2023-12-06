@@ -3,4 +3,7 @@ Komodo Poisoner - criado para fins educacionais e de estudo apenas - é uma apli
 Ela que cria um executável para windows e recebe a input do teclado do pc hospedeiro e sua tela em tempo real; 
 Desenvolvido em C++, pode ser utilizado tanto em uma distribuição Linux Desktop quanto em um terminal mobile como o Termux que é seu objetivo principal.
 
+## Instruções:
+sudo apt-get install mingw-w64
+
 AINDA EM DESENVOLVIMENTO
