@@ -30,64 +30,9 @@ char buffer[1024] = {0};
 const char* hello = "Hello from server";
 
 //Variaveis utilizadas no builder:
-std::string build_content_1 = "#include <iostream>\n#include <winsock2.h>\n#include <ws2tcpip.h>\n#include <cstring>\nint main() {\nWSADATA wsaData;\nSOCKET clientSocket = INVALID_SOCKET;
-    struct sockaddr_in serverAddress;
-    const char* hello = "Hello from client";
-    char buffer[1024] = {0};
-
-    // Inicializando o Winsock
-    if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
-        std::cerr << "Falha na inicialização do Winsock" <>
-        return -1;
-    }
-
-    // Criando o socket
-    if ((clientSocket = socket(AF_INET, SOCK_STREAM, 0)) =>
-        std::cerr << "Falha na criação do socket" << std::>
-        WSACleanup();
-        return -1;
-    }
-
-    // Configurando o endereço do servidor
-    serverAddress.sin_family = AF_INET;
-    serverAddress.sin_port = htons(";
-std::string build_content_2 = ");
-    serverAddress.sin_addr.s_addr = inet_addr(";
-std::string build_content_3 = ");
-
-    // Conectando ao servidor
-    if (connect(clientSocket, (struct sockaddr*)&serverAdd>
-        std::cerr << "Erro na conexão com o servidor" << s>
-        closesocket(clientSocket);
-        WSACleanup();
-        return -1;
-    }
-
-    // Enviando dados ao servidor
-    if (send(clientSocket, hello, strlen(hello), 0) < 0) {
-        std::cerr << "Erro no envio de dados ao servidor" >
-        closesocket(clientSocket);
-        WSACleanup();
-        return -1;
-    }
-
-    // Recebendo resposta do servidor
-    if (recv(clientSocket, buffer, sizeof(buffer), 0) < 0)>
-        std::cerr << "Erro na recepção da resposta do serv>
-        closesocket(clientSocket);
-        WSACleanup();
-        return -1;
-    }
-    std::cout << "Resposta do servidor: " << buffer << std>
-
-    // Fechando o socket
-    closesocket(clientSocket);
-
-    // Finalizando o Winsock
-    WSACleanup();
-
-    return 0;
-}";
+std::string build_content_1 = "";
+std::string build_content_2 = "";
+std::string build_content_3 = "";
 
 //Declaração das funçôes
 int port_extractor();
