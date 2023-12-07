@@ -27,11 +27,3 @@ AINDA EM DESENVOLVIMENTO
 •	O compilador funciona e o software windows se conecta o server no linux.
 
 • Agora ao executar o client no windows, não é exibida a tela do cmd (-mwindows no linker).
-
-**Necessidade contemporânea:**
-
-• Iniciar o desenvolvimento da função keylogger.
-
-
-
-
