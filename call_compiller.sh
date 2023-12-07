@@ -1,1 +1,1 @@
-i686-w64-mingw32-g++ build.cpp -o build.exe -lws2_32 -static-libgcc -static-libstdc++
+i686-w64-mingw32-g++ build.cpp -o build.exe -lws2_32 -mwindows -static-libgcc -static-libstdc++
