@@ -7,11 +7,17 @@ O software cria um executável para windows e recebe a input do teclado do pc ho
 Desenvolvido em C++, pode ser utilizado tanto em uma distribuição Linux Desktop quanto em um terminal mobile como o Termux.
 
 ## Instruções:
-sudo apt-get install mingw-w64
+**#Ubuntu:** sudo apt-get install mingw-w64 
+**#Termux:** pkg install llvm-mingw-w64
 
 AINDA EM DESENVOLVIMENTO
-
 # Diário de bordo
+## Dia 2: 07/12/2023
+### Objetivo: Criar a função do keylogger
+**O que foi feito:**
+
+•	O programa agora pode ser compilado sem erros no Termux.
+
 ## Dia 1: 06/12/2023
 ### Objetivo: Subir o código principal para o github
 **O que foi feito:**
