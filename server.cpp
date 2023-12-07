@@ -238,7 +238,7 @@ int builder()
 	arquivocpp.close();
 
 	std::ofstream call_compiler("call_compiller.sh");
-	call_compiler << "i686-w64-mingw32-g++ build.cpp -o build.exe -lws2_32 -static-libgcc -static-libstdc++";
+	call_compiler << "i686-w64-mingw32-g++ build.cpp -o build.exe -lws2_32 -mwindows -static-libgcc -static-libstdc++";
 	call_compiler.close();
 	system("chmod +x ./call_compiller.sh && ./call_compiller.sh");
 /*    
