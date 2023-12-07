@@ -17,6 +17,7 @@ AINDA EM DESENVOLVIMENTO
 **O que foi feito:**
 
 •	Comecei a organizar melhor o conteúdo do executável para Windows.
+
 •	O compilador funciona e o software windows se conecta o server no linux.
 
 **Necessidade contemporânea:**
