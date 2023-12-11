@@ -18,6 +18,7 @@ AINDA EM DESENVOLVIMENTO
 **O que foi feito:**
 
 •	Agora ao terminar a compilação no builder o usuário pode escolher se quer chamar o listener.
+
 •	Foi adicionado um menu de help ao listener.
 
 ## Dia 2: 07/12/2023
