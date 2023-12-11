@@ -8,12 +8,19 @@ Desenvolvido em C++, pode ser utilizado tanto em uma distribuição Linux Deskto
 
 ## Instruções:
 **#Ubuntu:** sudo apt-get install mingw-w64 
+
 **#Termux:** pkg install llvm-mingw-w64
 
 AINDA EM DESENVOLVIMENTO
 # Diário de bordo
+## Dia 3: 11/07/2023
+### Objetivo: Desenvolver o Keylogger
+**O que foi feito:**
+
+•	Agora ao terminar a compilação no builder o usuário pode escolher se quer chamar o listener.
+
 ## Dia 2: 07/12/2023
-### Objetivo: Criar a função do keylogger
+### Objetivo: Corrigir a função do compilador para funcionar no termux
 **O que foi feito:**
 
 •	O programa agora pode ser compilado sem erros no Termux.
