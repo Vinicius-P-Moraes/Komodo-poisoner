@@ -12,6 +12,9 @@
 //Bilbiotecas utilizadas no builder:
 #include <fstream>
 
+//Header de configurações
+#include "./config.h"
+
 //Variaveis utilizadas para receber as informaçôes para a conexão.
 const int command_size = 100;
 char command[command_size];
@@ -182,6 +185,7 @@ return 0;
 
 int open_listener()
 {
+
     // Criando o socket
         std::cout << "Criando socket\n";
     if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) == 0) {
@@ -222,27 +226,12 @@ int open_listener()
         std::cout << "Cliente conectado com sucesso\n";
 	estado_de_conexao = true;
 
-
-	while(estado_de_conexao = true){
-	}
-    // Recebendo dados do cliente
-    valread = read(new_socket, buffer, 1024);
-    std::cout << buffer << std::endl;
-
-    // Enviando resposta ao cliente
-    send(new_socket, hello, strlen(hello), 0);
-    std::cout << "Resposta enviada ao cliente" << std::endl;
-
-    // Fechando o socket
-    close(new_socket);
-    close(server_fd);
-
 	//Caso o listener seja iniciado, o programa não fecha e segue:
-	memset(command, 0, command_size);
 	std::cout << "Listener\n";
 	std::cout << "Instruções:\nklog -h\nscreencast -h\nexit a qualquer momento para sair.\n";
 
-	while(1){
+	while(estado_de_conexao == true){
+		memset(command, 0, command_size);
 		std::cout << "\n$listener$: ";
 		std::cin.getline(command, command_size);
 
@@ -277,7 +266,56 @@ int open_listener()
 			++i;
 			if(command[i] = 'b')
 			{
-				
+				std::cout << "Usuário escolheu a opção begin\n";
+
+				hifen_encontrado = false;
+                        	do{
+                                	if(command[i] == '-')
+					{
+                                		hifen_encontrado = true;
+                                	}else
+					{
+                                        	++i;
+                                	}
+
+                                	if(i >= 100)
+					{
+                                        	std::cout << "Sintaxe incorreta\n";
+                                        	break;
+                                	}
+
+                        	}while(hifen_encontrado != true);
+
+				++i;
+				if(command[i] == 't')
+				{
+					while(estado_de_conexao == true)
+					{
+						std::cout << "Imprimir no terminal\n";
+						// Enviando request de dados ao client:
+						send(new_socket, "REQUEST_FLAG", 12, 0 );
+    						valread = read(new_socket, buffer, 1024);
+    						std::cout << buffer;
+
+    						// Esperando antes de requisitar o próximo buffer
+						sleep(klog_update_time);
+					}
+
+				}else if(command[i] == 'o')
+				{
+					std::cout << "Gravar em arquyivo\n";
+					// Recebendo dados do cliente
+    					valread = read(new_socket, buffer, 1024);
+    					std::cout << buffer << std::endl;
+
+    					// Enviando resposta ao cliente
+    					send(new_socket, hello, strlen(hello), 0);
+    					std::cout << "Resposta enviada ao cliente" << std::endl;
+
+				}else
+				{
+					std::cout << "Sintaxe incorreta\n";
+				}
 			}
 
 		}else if(command[0] == 's'){
@@ -289,7 +327,11 @@ int open_listener()
 			std::cout << "Sintaxe incorreta: " << command[i];
 		}
 	}
+	//FIm do while
 
+	// Fechando o socket
+	close(new_socket);
+	close(server_fd);
         return 0;
 }
 
