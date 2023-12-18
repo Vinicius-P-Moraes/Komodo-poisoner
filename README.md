@@ -12,7 +12,26 @@ Desenvolvido em C++, pode ser utilizado tanto em uma distribuição Linux Deskto
 **#Termux:** pkg install llvm-mingw-w64
 
 AINDA EM DESENVOLVIMENTO
+
 # Diário de bordo
+## Dia 6: 17/07/2023
+### Objetivo: Desenvolver o Keylogger
+**O que foi feito:**
+
+• Andamento do desenvolvimento do keylogger para windows.
+
+## Dia 5: 16/07/2023
+### Objetivo: Desenvolver o Keylogger
+**O que foi feito:**
+
+• Andamento do desenvolvimento do keylogger para windows.
+
+## Dia 4: 13/07/2023
+### Objetivo: Desenvolver o Keylogger
+**O que foi feito:**
+
+• Andamento do desenvolvimento do keylogger para windows: estudando como capturar as teclas do modo mais eficiente.
+
 ## Dia 3: 11/07/2023
 ### Objetivo: Desenvolver o Keylogger
 **O que foi feito:**
@@ -20,6 +39,8 @@ AINDA EM DESENVOLVIMENTO
 •	Agora ao terminar a compilação no builder o usuário pode escolher se quer chamar o listener.
 
 •	Foi adicionado um menu de help ao listener.
+
+•	A função de receber o log do teclado diretamente no terminal está pronta do lado do servidor
 
 ## Dia 2: 07/12/2023
 ### Objetivo: Corrigir a função do compilador para funcionar no termux
