@@ -7,9 +7,17 @@ O software cria um executável para windows e recebe a input do teclado do pc ho
 Desenvolvido em C++, pode ser utilizado tanto em uma distribuição Linux Desktop quanto em um terminal mobile como o Termux.
 
 ## Instruções:
-**#Ubuntu:** sudo apt-get install mingw-w64 
+**# Ubuntu:** sudo apt-get install mingw-w64 
 
 **#Termux:** pkg install llvm-mingw-w64
+
+## Artigos e tutoriais utilizados:
+https://learn.microsoft.com/pt-br/windows/win32/winmsg/hooks
+
+https://learn.microsoft.com/pt-br/windows/win32/winmsg/using-hooks
+
+https://learn.microsoft.com/pt-br/windows/win32/winmsg/keyboardproc
+
 
 AINDA EM DESENVOLVIMENTO
 
