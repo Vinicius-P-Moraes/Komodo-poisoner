@@ -6,41 +6,39 @@ O software cria um executável para windows e recebe a input do teclado do pc ho
 
 Desenvolvido em C++, pode ser utilizado tanto em uma distribuição Linux Desktop quanto em um terminal mobile como o Termux.
 
-## Instruções:
+## Dependências:
 **# Ubuntu:** sudo apt-get install mingw-w64 
 
 **#Termux:** pkg install llvm-mingw-w64
 
-## Artigos e tutoriais utilizados:
-https://learn.microsoft.com/pt-br/windows/win32/winmsg/hooks
-
-https://learn.microsoft.com/pt-br/windows/win32/winmsg/using-hooks
-
-https://learn.microsoft.com/pt-br/windows/win32/winmsg/keyboardproc
-
-
 AINDA EM DESENVOLVIMENTO
 
 # Diário de bordo
-## Dia 6: 17/07/2023
+## Dia 7: 11/1/2023
+### Objetivo: Desenvolver o Keylogger
+**O que foi feito:**
+
+• Continuação do desenvolvimento do keylogger para Windows.
+
+## Dia 6: 17/12/2023
 ### Objetivo: Desenvolver o Keylogger
 **O que foi feito:**
 
 • Andamento do desenvolvimento do keylogger para windows.
 
-## Dia 5: 16/07/2023
+## Dia 5: 16/12/2023
 ### Objetivo: Desenvolver o Keylogger
 **O que foi feito:**
 
 • Andamento do desenvolvimento do keylogger para windows.
 
-## Dia 4: 13/07/2023
+## Dia 4: 13/12/2023
 ### Objetivo: Desenvolver o Keylogger
 **O que foi feito:**
 
 • Andamento do desenvolvimento do keylogger para windows: estudando como capturar as teclas do modo mais eficiente.
 
-## Dia 3: 11/07/2023
+## Dia 3: 11/12/2023
 ### Objetivo: Desenvolver o Keylogger
 **O que foi feito:**
 
