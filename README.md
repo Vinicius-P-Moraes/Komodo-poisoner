@@ -23,6 +23,8 @@ Desenvolvido em C++, pode ser utilizado tanto em uma distribuição Linux Deskto
 
 **Função MapVirtualKeyA (winuser.h): https://learn.microsoft.com/pt-pt/windows/win32/api/winuser/nf-winuser-mapvirtualkeya**
 
+**Função UnhookWindowsHookEx (winuser.h): https://learn.microsoft.com/pt-pt/windows/win32/api/winuser/nf-winuser-unhookwindowshookex**
+
 AINDA EM DESENVOLVIMENTO
 
 # Diário de bordo
