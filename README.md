@@ -11,6 +11,12 @@ Desenvolvido em C++, pode ser utilizado tanto em uma distribuição Linux Deskto
 
 **#Termux:** pkg install llvm-mingw-w64
 
+## Referências:
+
+**Morning Tech Talk - C++ Coding (Low-Level Keyboard Hook for Windows): https://youtu.be/QIWw0jZqGKA?si=pDTlnEKFph_NosR3**
+
+**Função SetWindowsHookExA (winuser.h): https://learn.microsoft.com/pt-br/windows/win32/api/winuser/nf-winuser-setwindowshookexa**
+
 AINDA EM DESENVOLVIMENTO
 
 # Diário de bordo
