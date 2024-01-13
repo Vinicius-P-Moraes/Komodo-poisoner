@@ -21,6 +21,8 @@ Desenvolvido em C++, pode ser utilizado tanto em uma distribuição Linux Deskto
 
 **Estrutura KBDLLHOOKSTRUCT (winuser.h): https://learn.microsoft.com/pt-pt/windows/win32/api/winuser/ns-winuser-kbdllhookstruct**
 
+**Tabela ASCCI mais completa que pude encontrar: https://web.fe.up.pt/~ee96100/projecto/Tabela%20ascii.htm**
+
 AINDA EM DESENVOLVIMENTO
 
 # Diário de bordo
