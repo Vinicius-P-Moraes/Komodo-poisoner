@@ -19,6 +19,8 @@ Desenvolvido em C++, pode ser utilizado tanto em uma distribuição Linux Deskto
 
 **Função LowLevelKeyboardProc: https://learn.microsoft.com/pt-br/windows/win32/winmsg/lowlevelkeyboardproc**
 
+**Estrutura KBDLLHOOKSTRUCT (winuser.h): https://learn.microsoft.com/pt-pt/windows/win32/api/winuser/ns-winuser-kbdllhookstruct**
+
 AINDA EM DESENVOLVIMENTO
 
 # Diário de bordo
