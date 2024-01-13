@@ -17,6 +17,8 @@ Desenvolvido em C++, pode ser utilizado tanto em uma distribuição Linux Deskto
 
 **Função SetWindowsHookExA (winuser.h): https://learn.microsoft.com/pt-br/windows/win32/api/winuser/nf-winuser-setwindowshookexa**
 
+**Função LowLevelKeyboardProc: https://learn.microsoft.com/pt-br/windows/win32/winmsg/lowlevelkeyboardproc**
+
 AINDA EM DESENVOLVIMENTO
 
 # Diário de bordo
