@@ -1,1 +1,0 @@
-i686-w64-mingw32-g++ tempf_build.cpp -o build.exe -lws2_32 -static-libgcc -static-libstdc++ -std=c++11
