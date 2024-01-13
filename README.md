@@ -28,33 +28,48 @@ Desenvolvido em C++, pode ser utilizado tanto em uma distribuição Linux Deskto
 AINDA EM DESENVOLVIMENTO
 
 # Diário de bordo
-## Dia 7: 11/1/2023
+## Dia 8: 13/1/2023
 ### Objetivo: Desenvolver o Keylogger
-**O que foi feito:**
+**Bugs a serem corrigidos:**
+
+• Keylogger somente envia duas capturas ao servidor;
+
+• Builder não compila corretamente o arquivo .exe.
+
+### **O que foi feito:**
+
+• Agora o programa elimina arquivos temporários criados pelo builder.
+
+• O keylogger conta com o melhor método para detectar as teclas pressionadas pelo usuário.
+
+# Diário de bordo
+## Dia 7: 11/1/2023
+### Objetivo: Desenvolver o Keylogger.
+### **O que foi feito:**
 
 • Continuação do desenvolvimento do keylogger para Windows.
 
 ## Dia 6: 17/12/2023
-### Objetivo: Desenvolver o Keylogger
-**O que foi feito:**
+### Objetivo: Desenvolver o Keylogger.
+### **O que foi feito:**
 
 • Andamento do desenvolvimento do keylogger para windows.
 
 ## Dia 5: 16/12/2023
-### Objetivo: Desenvolver o Keylogger
-**O que foi feito:**
+### Objetivo: Desenvolver o Keylogger.
+### **O que foi feito:**
 
 • Andamento do desenvolvimento do keylogger para windows.
 
 ## Dia 4: 13/12/2023
-### Objetivo: Desenvolver o Keylogger
-**O que foi feito:**
+### Objetivo: Desenvolver o Keylogger.
+### **O que foi feito:**
 
 • Andamento do desenvolvimento do keylogger para windows: estudando como capturar as teclas do modo mais eficiente.
 
 ## Dia 3: 11/12/2023
-### Objetivo: Desenvolver o Keylogger
-**O que foi feito:**
+### Objetivo: Desenvolver o Keylogger.
+### **O que foi feito:**
 
 •	Agora ao terminar a compilação no builder o usuário pode escolher se quer chamar o listener.
 
@@ -64,13 +79,13 @@ AINDA EM DESENVOLVIMENTO
 
 ## Dia 2: 07/12/2023
 ### Objetivo: Corrigir a função do compilador para funcionar no termux
-**O que foi feito:**
+### **O que foi feito:**
 
 •	O programa agora pode ser compilado sem erros no Termux.
 
 ## Dia 1: 06/12/2023
 ### Objetivo: Subir o código principal para o github
-**O que foi feito:**
+### **O que foi feito:**
 
 •	Comecei a organizar melhor o conteúdo do executável para Windows.
 
