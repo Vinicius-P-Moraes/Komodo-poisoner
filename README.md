@@ -21,7 +21,7 @@ Desenvolvido em C++, pode ser utilizado tanto em uma distribuição Linux Deskto
 
 **Estrutura KBDLLHOOKSTRUCT (winuser.h): https://learn.microsoft.com/pt-pt/windows/win32/api/winuser/ns-winuser-kbdllhookstruct**
 
-**A melhor referência à tabela ascci: https://www.asciitable.com/**
+**Função MapVirtualKeyA (winuser.h): https://learn.microsoft.com/pt-pt/windows/win32/api/winuser/nf-winuser-mapvirtualkeya**
 
 AINDA EM DESENVOLVIMENTO
 
