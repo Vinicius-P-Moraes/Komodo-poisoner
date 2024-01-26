@@ -30,6 +30,15 @@ Desenvolvido em C++, pode ser utilizado tanto em uma distribuição Linux Deskto
 AINDA EM DESENVOLVIMENTO
 
 # Diário de bordo
+## Dia 9: 26/1/2023
+### Objetivo: Desenvolver o Keylogger.
+
+### **O que foi feito:**
+
+• O Key logger agora diferencia teclas maiúsculas e minúsculas detectando o Shift e Caps Lock.
+
+• A conexão foi melhorada permanecendo estável e permitindo envio e recebimento de dados (ainda não está completamente funcional).
+
 ## Dia 8: 13/1/2023
 ### Objetivo: Desenvolver o Keylogger
 **Bugs a serem corrigidos:**
@@ -44,7 +53,6 @@ AINDA EM DESENVOLVIMENTO
 
 • O keylogger conta com o melhor método para detectar as teclas pressionadas pelo usuário.
 
-# Diário de bordo
 ## Dia 7: 11/1/2023
 ### Objetivo: Desenvolver o Keylogger.
 ### **O que foi feito:**
