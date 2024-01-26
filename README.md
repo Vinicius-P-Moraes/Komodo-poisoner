@@ -25,6 +25,8 @@ Desenvolvido em C++, pode ser utilizado tanto em uma distribuição Linux Deskto
 
 **Função UnhookWindowsHookEx (winuser.h): https://learn.microsoft.com/pt-pt/windows/win32/api/winuser/nf-winuser-unhookwindowshookex**
 
+**Referência para detectar telhas com o atalho SHIFT: https://pt.m.wikipedia.org/wiki/Ficheiro:Qwerty_pt_BR-ABNT2.svg**
+
 AINDA EM DESENVOLVIMENTO
 
 # Diário de bordo
