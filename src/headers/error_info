@@ -1,0 +1,28 @@
+#include <string>
+#include <vector>
+
+class error_info
+{
+  private
+    int error_code;
+
+    vector<std::string> error_name
+    {
+      /*0*/ "Sintaxe incorreta"
+    };
+
+    vector<std::string> error_desc
+    {
+      /*0*/ "O Comando nÃ£o foi digitado corretamente"
+    };
+
+    vector<std::string> error_tip
+    {
+      /*0*/ "Consulte o menÃº de ajuda com $:help"
+    };
+
+  public
+    std::string get_name(int error_code);
+    std::string get_desc(int error_code);
+    std::string get_tip(int error_code);
+}
