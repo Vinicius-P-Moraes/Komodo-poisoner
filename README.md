@@ -30,6 +30,16 @@ Desenvolvido em C++, pode ser utilizado tanto em uma distribuição Linux Deskto
 AINDA EM DESENVOLVIMENTO
 
 # Diário de bordo
+## Dia 11: 24/3/2024
+### Objetivo: Desenvolver o Keylogger.
+
+### **O que foi feito:**
+
+• Refatorando o código, e dividindo-o em mais arquivos.
+
+• Criação de uma classe para tratamento de erros.
+
+
 ## Dia 10: 20/3/2024
 ### Objetivo: Desenvolver o Keylogger.
 
